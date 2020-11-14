@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "better-sqlite3": "^7.1.1",
+    "lodash": "^4.17.20",
+    "natural": "^2.1.5",
     "next": "10.0.1",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "stopword": "^1.0.3"
   }
 }
