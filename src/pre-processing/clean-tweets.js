@@ -13,7 +13,7 @@ function cleanTweets(data){
         // Removing urls from tweets
         item.procesedTweet = item.procesedTweet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '');
 
-        console.log("r: ", item.procesedTweet);
+        // console.log("r: ", item.procesedTweet);
     })
 }
 

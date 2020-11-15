@@ -7,12 +7,13 @@ export default (req, res) => {
   try{
     let source = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"
     
-    let retrievedTweets = retrieveTweetsFromSqlite(source, req.query.limit)
+    let retrievedTweets = retrieveTweetsFromSqlite(source, req.query.limit, req.query.keywords)
     let listTerms = computeGlobalFrequecy(retrievedTweets)
     // console.log("tweets", retrievedTweets);
     // console.log("list", listTerms);
     res.statusCode = 200
     res.json({
+      count: retrievedTweets.length,
       raw: retrievedTweets, 
       keywords: listTerms
     })
