@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "better-sqlite3": "^7.1.1",
+    "bootstrap": "^4.5.3",
     "lodash": "^4.17.20",
     "natural": "^2.1.5",
     "next": "10.0.1",
