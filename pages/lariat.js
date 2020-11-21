@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Head from 'next/head'
 import styles from 'styles/Home.module.css'
 import LeftPanel from "components/left-panel";
+import MiddlePanel from "components/middle-panel";
 
 function Home({data}) {
 
@@ -18,7 +19,8 @@ function Home({data}) {
         <div className="row">
           <LeftPanel/>
           <div className="col-md-6 h-100">
-            One of three columns
+            two of three columns
+            <MiddlePanel/>
           </div>
           <div className="col h-100">
             One of three columns

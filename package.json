@@ -15,6 +15,7 @@
     "next": "10.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-faux-dom": "^4.5.0",
     "stopword": "^1.0.3"
   }
 }
