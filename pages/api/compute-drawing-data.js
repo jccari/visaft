@@ -4,19 +4,19 @@ import { buildTimeDimension, buildAutorDimension } from "utils/build-drawing-dat
 
 export default (req, res) => {
     try{
-        let response = {}
+        let response
 
-        const {
+        let {
             type,       // type of dimension 
             keywords,   // filtering by keywords
         } = req.body
 
         let {firstDate, lastDate} = getLimitDates()
-        response.firstDate = firstDate?.date
-        response.lastDate = lastDate?.date
+        // response.firstDate = firstDate?.date
+        // response.lastDate = lastDate?.date
 
-
-        // buildTimeDimension(firstDate?.date, lastDate?.date, 15);
+        // keywords = "hola"
+        response = buildTimeDimension(firstDate?.date, lastDate?.date, keywords, 15);
         // buildAutorDimension()
 
         res.statusCode = 200

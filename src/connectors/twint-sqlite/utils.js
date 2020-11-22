@@ -22,3 +22,22 @@ export function getLimitDates(){
         lastDate: runGetQuery(query2)
     }
 }
+
+/*
+    query: string
+    keywords: string in format (k1,k2,..,kn)
+*/
+export function addKeywordsFilter(query, keywords=null){
+    if (keywords?.length > 0){
+        let listkeys = keywords.split(",")
+
+        listkeys = listkeys.map( (word) => {
+            return `tweet LIKE \'%${word}%\'` 
+        }) 
+
+        let whereClause = " WHERE " + listkeys.join(" OR ")
+        query += whereClause
+    }
+
+    return query
+}
