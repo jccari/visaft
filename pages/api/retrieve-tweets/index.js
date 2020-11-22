@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { retrieveTweetsFromSqlite } from "connectors/twint-sqlite";
+import { retrieveTweets } from "connectors/twint-sqlite";
 import { computeGlobalFrequecy } from "pre-processing";
 
 export default (req, res) => {
@@ -9,7 +9,7 @@ export default (req, res) => {
     
     const {limit, keywords} = req.query
     
-    let retrievedTweets = retrieveTweetsFromSqlite(source, limit, keywords)
+    let retrievedTweets = retrieveTweets(source, keywords, limit)
     let listTerms = computeGlobalFrequecy(retrievedTweets)
     // console.log("tweets", retrievedTweets);
     // console.log("list", listTerms);

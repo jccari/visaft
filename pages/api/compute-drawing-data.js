@@ -1,7 +1,6 @@
-import {getLimitDates, runAllQuery} from "connectors/twint-sqlite";
-import { buildTimeDimension } from "utils/build-drawing-data";
+import {getLimitDates} from "connectors/twint-sqlite";
+import { buildTimeDimension, buildAutorDimension } from "utils/build-drawing-data";
 
-const query = ""
 
 export default (req, res) => {
     try{
@@ -16,9 +15,9 @@ export default (req, res) => {
         response.firstDate = firstDate?.date
         response.lastDate = lastDate?.date
 
-        // let tweets = runAllQuery(query)
 
-        buildTimeDimension([], firstDate?.date, lastDate?.date, 15);
+        // buildTimeDimension(firstDate?.date, lastDate?.date, 15);
+        // buildAutorDimension()
 
         res.statusCode = 200
         res.json(response)

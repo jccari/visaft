@@ -1,4 +1,4 @@
-// export { default as retrieveTweetsFromSqlite } from "./twint-sqlite/retrieve-tweets"
+// export { default as retrieveTweets } from "./twint-sqlite/retrieve-tweets"
 
 // export { 
 //     getLimitDates,

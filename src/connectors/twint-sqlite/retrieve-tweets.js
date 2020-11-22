@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
 
-function retrieveTweets(source, limit=undefined, keywords=""){
+function retrieveTweets(source, keywords="", limit=undefined){
     let query = 'SELECT id, tweet, date, time, timezone, user_id, screen_name, name, link, mentions, hashtags FROM tweets'
 
     if (keywords.length > 0){

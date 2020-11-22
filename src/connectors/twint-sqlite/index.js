@@ -1,4 +1,4 @@
-export { default as retrieveTweetsFromSqlite } from "./retrieve-tweets"
+export { default as retrieveTweets } from "./retrieve-tweets"
 
 export { 
     getLimitDates,

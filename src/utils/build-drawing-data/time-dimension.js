@@ -1,4 +1,4 @@
-import { runAllQuery } from "connectors/twint-sqlite";
+import { runGetQuery } from "connectors/twint-sqlite";
 import { DATE_FORMATS } from "constants/index";
 import moment from "moment";
 
@@ -13,13 +13,28 @@ function computeRanges(first, last, step){
         date = date.add(step, "days")
     }
 
+    dates.push(date.format(DATE_FORMATS.date))
+
     return dates
 }
 
-function buildTimeDimension(tweets, firstDate, lastDate, step = 15 /* days*/,  ){
+function buildTimeDimension(firstDate, lastDate, step = 15 /* days*/,  ){
     let dates = computeRanges(firstDate, lastDate, step)
-
-    console.log("dates", dates)
+    let results = [] 
+    for (let i=0; i < dates.length -1 ; i++){
+        let query = `SELECT COUNT(id) as total FROM tweets WHERE date >= '${dates[i]}' and date <= '${dates[i+1]}'`;
+        let resQuery = runGetQuery(query)
+        // console.log("query", i , query, resQuery );
+        let res = {
+            firstDate: dates[i],
+            lastDate: dates [i+1],
+            total: resQuery?.total
+        }
+        console.log("queryRes", i , res );
+        results.push(res)
+    }
+    // console.log("results: ", results);
+    return results
 }
 
 export default buildTimeDimension
