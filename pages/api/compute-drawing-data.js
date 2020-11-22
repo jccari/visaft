@@ -1,4 +1,5 @@
 import {getLimitDates} from "connectors/twint-sqlite";
+import { LARIAT } from "constants/index";
 import { buildTimeDimension, buildAutorDimension } from "utils/build-drawing-data";
 
 
@@ -12,12 +13,12 @@ export default (req, res) => {
         } = req.body
 
         let {firstDate, lastDate} = getLimitDates()
-        // response.firstDate = firstDate?.date
-        // response.lastDate = lastDate?.date
 
-        // keywords = "hola"
-        response = buildTimeDimension(firstDate?.date, lastDate?.date, keywords, 15);
-        // buildAutorDimension()
+        if (type === LARIAT?.dimensions?.time)
+            response = buildTimeDimension(firstDate?.date, lastDate?.date, keywords, 15)
+
+        if (type === LARIAT?.dimensions?.autor)
+            response = buildAutorDimension(keywords)
 
         res.statusCode = 200
         res.json(response)
