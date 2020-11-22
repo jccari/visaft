@@ -41,7 +41,10 @@ function buildTimeDimension(firstDate, lastDate, keywords=null ,step = 15 /* day
         results.push(res)
     }
     // console.log("results: ", results);
-    return results
+    return {
+        total : results.length,
+        data : results
+    }
 }
 
 export default buildTimeDimension

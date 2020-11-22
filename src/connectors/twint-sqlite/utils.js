@@ -32,6 +32,7 @@ export function addKeywordsFilter(query, keywords=null){
         let listkeys = keywords.split(",")
 
         listkeys = listkeys.map( (word) => {
+            word = String(word).trim()
             return `tweet LIKE \'%${word}%\'` 
         }) 
 

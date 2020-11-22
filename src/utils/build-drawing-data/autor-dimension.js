@@ -10,7 +10,10 @@ function buildAutorDimension(keywords = null){
 
     let results = runAllQuery(query);
     // console.log("autor", results);
-    return results
+    return {
+        total : results.length,
+        data : results
+    }
 }
 
 export default buildAutorDimension
