@@ -6,7 +6,7 @@ export const DATE_FORMATS = {
 export const LARIAT = {
     dimensions: {
         time: "time",
-        hashtags: "hashtags",
+        hashtags: "hashtag",
         autor: "autor",
     }
 }

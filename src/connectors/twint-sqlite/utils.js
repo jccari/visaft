@@ -36,7 +36,7 @@ export function addKeywordsFilter(query, keywords=null){
             return `tweet LIKE \'%${word}%\'` 
         }) 
 
-        let whereClause = " WHERE " + listkeys.join(" OR ")
+        let whereClause = " WHERE (" + listkeys.join(" OR ") + ")"
         query += whereClause
     }
 

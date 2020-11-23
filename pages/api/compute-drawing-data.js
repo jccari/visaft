@@ -1,6 +1,6 @@
 import {getLimitDates} from "connectors/twint-sqlite";
 import { LARIAT } from "constants/index";
-import { buildTimeDimension, buildAutorDimension } from "utils/build-drawing-data";
+import { buildTimeDimension, buildAutorDimension, buildHashtagDimension } from "utils/build-drawing-data";
 
 
 export default (req, res) => {
@@ -12,14 +12,19 @@ export default (req, res) => {
             keywords,   // filtering by keywords
         } = req.body
 
-        let {firstDate, lastDate} = getLimitDates()
-
-        if (type === LARIAT?.dimensions?.time)
+        if (type === LARIAT?.dimensions?.time){
+            let {firstDate, lastDate} = getLimitDates()
             response = buildTimeDimension(firstDate?.date, lastDate?.date, keywords, 15)
+        }
 
-        if (type === LARIAT?.dimensions?.autor)
+        if (type === LARIAT?.dimensions?.autor){
             response = buildAutorDimension(keywords)
+        }
 
+        if (type === LARIAT?.dimensions?.hashtags){
+            response = buildHashtagDimension(keywords)
+        }
+        
         res.statusCode = 200
         res.json(response)
     } catch (err){
