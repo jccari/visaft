@@ -27,7 +27,7 @@ function count(array){
     return result.sort((a, b) => b.total - a.total)
 }
 
-function buildHashtagDimension(keywords = null){
+function buildHashtagDimension(keywords = null, limit){
     let initQuery = "select hashtags from tweets"
     let query
     if (keywords){
@@ -44,7 +44,7 @@ function buildHashtagDimension(keywords = null){
 
     // console.log("hashtagsStr", hashtagsStr);
 
-    let results = count(hashtagsArray)
+    let results = count(hashtagsArray).slice(0, limit)
     // console.log("hashtags", results);
     return {
         total : results.length,

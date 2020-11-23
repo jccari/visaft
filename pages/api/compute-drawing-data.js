@@ -22,9 +22,10 @@ export default (req, res) => {
         }
 
         if (type === LARIAT?.dimensions?.hashtags){
-            response = buildHashtagDimension(keywords)
+            let limit = 25
+            response = buildHashtagDimension(keywords, limit)
         }
-        
+
         res.statusCode = 200
         res.json(response)
     } catch (err){
