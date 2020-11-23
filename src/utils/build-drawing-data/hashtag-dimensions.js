@@ -17,16 +17,13 @@ function count(array){
     let result = []
     let res = {};
     array.forEach(function(x) { res[x] = (res[x] || 0)+1; })
-    // console.log("hashtags", res);
     Object.keys(res).forEach((key) => {
         let tmp = {
             hashtag: key,
             total: res[key]
         }
         result.push(tmp)
-        // [Number(key), obj[key]]
     });
-    console.log("array", result);
     return result.sort((a, b) => b.total - a.total)
 }
 
@@ -45,10 +42,8 @@ function buildHashtagDimension(keywords = null){
     let hashtagsStr = mapToString(hashtags, (item) => item?.hashtags)
     let hashtagsArray = hashtagsStr.split(",")
 
-    console.log("hashtagsStr", hashtagsStr);
+    // console.log("hashtagsStr", hashtagsStr);
 
-    // var results = {};
-    // hashtagsArray.forEach(function(x) { results[x] = (results[x] || 0)+1; })
     let results = count(hashtagsArray)
     // console.log("hashtags", results);
     return {
