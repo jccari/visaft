@@ -12,6 +12,10 @@ export default (req, res) => {
             keywords,   // filtering by keywords
         } = req.body
 
+        if (type === undefined){
+            throw "Se necesita el 'type'"
+        }
+
         if (type === LARIAT?.dimensions?.time){
             let {firstDate, lastDate} = getLimitDates()
             response = buildTimeDimension(firstDate?.date, lastDate?.date, keywords, 15)
@@ -32,7 +36,7 @@ export default (req, res) => {
         let response = {
             error: err
         }
-        console.log("ERROR: ", response);
+        // console.log("ERROR: ", response);
 
         res.statusCode = 500
         res.json(response)
