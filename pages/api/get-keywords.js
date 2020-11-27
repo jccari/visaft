@@ -15,9 +15,8 @@ export default (req, res) => {
     // console.log("list", listTerms);
     res.statusCode = 200
     res.json({
-      count: retrievedTweets.length,
-      raw: retrievedTweets, 
-      keywords: listTerms
+      count: listTerms.length,
+      keywords: listTerms.slice(0, limit),
     })
   } catch (err){
     res.statusCode = 500

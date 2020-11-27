@@ -1,18 +1,45 @@
-import { useContext, useEffect } from  "react"
+import { useContext, useEffect, useState } from  "react"
+import { Paper, Tabs, Tab } from "@material-ui/core";
+
 import { AppContext } from "contexts/AppContext"
+import TabPanel from "./tab-panel"
+import KeywordsList from "./keywords-list";
+import {TweetsList} from "components"
 
-function ResultBox(){
-    const {tweets} = useContext(AppContext)
-    
-    useEffect(()=>{
-        console.log("ResultBox", tweets, tweets?.count);
-    },[tweets])
 
-    return (
-        <div className="card p-2 mt-2">
-            <p>{tweets?.count}</p>
-        </div>
-    )
+function ResultBox() {
+  const [active, setActive] = useState(0)
+  const {keywords, getKeywords} = useContext(AppContext)
+
+//   useEffect(()=>{
+//     // getKeywords()
+//     console.log("RB", keywords);
+//   },[keywords])
+
+  const handleChange = (event, newValue) => {
+    setActive(newValue);
+  };
+
+  return (
+    <Paper square className="mt-3">
+      <Tabs
+        value={active}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+      >
+        <Tab label="Palabras Clave" />
+        <Tab label="Resultado de Búsqueda" />
+      </Tabs>
+      <TabPanel value={active} index={0}>
+          <KeywordsList data={keywords}/>
+      </TabPanel>
+
+      <TabPanel value={active} index={1}>
+          <TweetsList />
+      </TabPanel>
+    </Paper>
+  );
 }
 
 export default ResultBox

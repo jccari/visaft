@@ -14,8 +14,8 @@ function retrieveTweets(source, keywords="", limit=undefined){
         query += whereClause
     }
 
-    if (limit != undefined)
-        query = query + " LIMIT " + String(limit)
+    // if (limit != undefined)
+    //     query = query + " LIMIT " + String(limit)
 
     // console.log("query: ", query);
     const db = new Database(source, { verbose: console.log });

@@ -1,6 +1,4 @@
-import { functionsIn } from "lodash";
-
-const { createContext, useState } = require("react");
+import { createContext, useState, useEffect } from "react"
 
 export const AppContext = createContext(null)
 
@@ -12,6 +10,10 @@ function AppContextProvider(props){
 
     const [keywordsFilter, setKeywordsFilter] = useState(null)
 
+    useEffect(()=>{
+        getKeywords()
+    },[])
+
     async function getTweets(kw){
         let fetchUrl = `${serverUrl}/api/retrieve-tweets?limit=${1000}`
         if (kw){
@@ -20,6 +22,20 @@ function AppContextProvider(props){
         const res = await fetch(fetchUrl)
         const data = await res.json()
         setTweets(data)
+        setKeywords(data?.keywords)
+    }
+
+    async function getKeywords(kw){
+        let fetchUrl = `${serverUrl}/api/get-keywords?limit=${10}`
+        if (kw){
+            fetchUrl = fetchUrl + `&keywords=${kw}`
+        }
+        console.log("query", fetchUrl);
+        const res = await fetch(fetchUrl)
+        const data = await res.json()
+        await setKeywords(data?.keywords)
+        console.log("keywords11", data?.keywords);
+        return data
     }
 
     const values = {
@@ -28,6 +44,7 @@ function AppContextProvider(props){
         keywordsFilter, setKeywordsFilter,
 
         getTweets,
+        getKeywords,
     }
 
     return (

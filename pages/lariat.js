@@ -29,9 +29,6 @@ function Home({data}) {
             two of three columns
             <MiddlePanel data={datatest}/>
           </div>
-          <div className="col h-100">
-            One of three columns
-          </div>
       </div>
     </div>
   )
