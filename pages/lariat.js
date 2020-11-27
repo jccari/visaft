@@ -1,8 +1,15 @@
 import { useEffect } from "react";
 import Head from 'next/head'
-import styles from 'styles/Home.module.css'
 import LeftPanel from "components/left-panel";
-import MiddlePanel from "components/middle-panel";
+import MiddlePanel from "components/middle-panel/bar-chart";
+
+let datatest = [
+  { genre: 'A', revenue: 5 },
+  { genre: 'B', revenue: 4 },
+  { genre: 'C', revenue: 9 },
+  { genre: 'D', revenue: 2 },
+  { genre: 'E', revenue: 7 },
+]
 
 function Home({data}) {
 
@@ -20,7 +27,7 @@ function Home({data}) {
           <LeftPanel/>
           <div className="col-md-6 h-100">
             two of three columns
-            <MiddlePanel/>
+            <MiddlePanel data={datatest}/>
           </div>
           <div className="col h-100">
             One of three columns
