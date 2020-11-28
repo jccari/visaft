@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import Head from 'next/head'
 import LeftPanel from "components/left-panel";
-import MiddlePanel from "components/middle-panel/bar-chart";
+import MiddlePanel from "components/right-panel/bar-chart";
+import {RightPanel} from "components";
 
 let datatest = [
   { genre: 'A', revenue: 5 },
@@ -18,17 +19,14 @@ function Home({data}) {
   },[])
 
   return (
-    <div className="container-fluid">
+    <div>
       <Head>
         <title>Lariat</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <div className="row">
           <LeftPanel/>
-          <div className="col-md-6 h-100">
-            two of three columns
-            <MiddlePanel data={datatest}/>
-          </div>
+          <RightPanel/>
       </div>
     </div>
   )

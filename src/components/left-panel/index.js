@@ -3,7 +3,7 @@ import {SearchBox, ResultBox} from "components"
 
 function LeftPanel(props){
     return (
-        <div className="col-md-4 m-2 h-100">
+        <div className="col-3 h-100">
             <SearchBox/>
             <ResultBox/>
         </div>

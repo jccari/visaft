@@ -1,5 +1,6 @@
 export {default as LeftPanel} from "./left-panel"
-export {default as MiddlePanel} from "./middle-panel/bar-chart"
+export {default as BarChart} from "./right-panel/bar-chart"
+export {default as RightPanel} from "./right-panel"
 export {default as ResultBox} from "./results-box"
 export {default as SearchBox} from "./search-box"
 export {default as TweetsList} from "./tweets"

@@ -27,7 +27,11 @@ const BarChart = ({ data }) => {
       // https://bl.ocks.org/taigereye/10a79a8d5b18a7c3d2833e79231351d8
     const yScale = scaleLinear()
     	.domain([0, yMax])
-    	.range([height - margin.bottom, margin.top]);
+      .range([height - margin.bottom, margin.top]);
+      // .range([height - margin.bottom, margin.top]);
+
+      console.log("domain", 0, yMax);
+      console.log("range", height, margin.top);
 
     //   const yScale = scaleLinear()
     //     .domain([0, yMax])
