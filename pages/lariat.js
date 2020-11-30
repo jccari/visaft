@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Head from 'next/head'
-import LeftPanel from "components/left-panel";
-import MiddlePanel from "components/right-panel/bar-chart";
-import {RightPanel} from "components";
+// import LeftPanel from "components/left-panel";
+// import MiddlePanel from "components/charts/bar-chart";
+import {LeftPanel, RightPanel} from "components";
 
 let datatest = [
   { genre: 'A', revenue: 5 },

@@ -2,7 +2,7 @@ import { AppContext } from "contexts/AppContext"
 import { useContext, useEffect } from "react"
 
 function SearchBox(params) {
-    const {keywordsFilter, setKeywordsFilter, getTweets, tweets} = useContext(AppContext);
+    const {keywordsFilter, setKeywordsFilter, getTweets, tweets, getKeywords, getDataForDrawing} = useContext(AppContext);
 
     useEffect(()=>{
         console.log("tweets", tweets);
@@ -12,7 +12,8 @@ function SearchBox(params) {
         let value = document.getElementById("keywords-filter").value
         console.log("value", value);
         setKeywordsFilter(value)
-        getTweets(value)
+        getKeywords(value)
+        getDataForDrawing(value)
     }
 
     return (

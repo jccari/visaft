@@ -26,7 +26,7 @@ const BarChart = ({ data }) => {
 
       // https://bl.ocks.org/taigereye/10a79a8d5b18a7c3d2833e79231351d8
       const yScale = scaleLinear()
-        .domain([0, yMax])
+        .domain([0, yMax+1])
         .range([height , margin.top]);
         // .range([height , margin.top]);
 
@@ -53,8 +53,8 @@ const BarChart = ({ data }) => {
         .attr('width', xScale.bandwidth())
         .attr('height', d => height - yScale(d.revenue))
         .style('fill', function(d, i) {
-          return color[i % 4] // use colors in sequence
-        })
+          return color[(i+1) % 4] // use colors in sequence
+        })  
 
       // draw axes
       const xAxis = axisBottom(xScale)
@@ -75,6 +75,7 @@ const BarChart = ({ data }) => {
 
   return (
     <svg
+      id="bar-chart-group"
       className="bar-chart-container"
       width={width + margin.left + margin.right}
       height={height + margin.top + margin.bottom}
