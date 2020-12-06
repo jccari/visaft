@@ -19,8 +19,11 @@ function AppContextProvider(props){
 
     useEffect(()=>{
         getKeywords()
-        getDataForDrawing()
     },[])
+
+    useEffect(()=>{
+        getDataForDrawing(keywordsFilter)
+    },[dimensionSelected])
 
     async function getTweets(kw){
         let fetchUrl = `${serverUrl}/api/retrieve-tweets?limit=${1000}`
@@ -50,6 +53,10 @@ function AppContextProvider(props){
         let domain
         if (dimensionSelected === LARIAT.dimensions.hashtags)
             domain = map(data, item => item.hashtag)
+        if (dimensionSelected === LARIAT.dimensions.autor)
+            domain = map(data, item => item["screen_name"])
+        if (dimensionSelected === LARIAT.dimensions.time)
+            domain = map(data, item => item["firstDate"])
 
         let subgroups = ["group-0"]
         setDomain(domain)

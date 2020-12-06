@@ -22,7 +22,8 @@ export default (req, res) => {
         }
 
         if (type === LARIAT?.dimensions?.autor){
-            response = buildAutorDimension(keywords)
+            let limit = 10
+            response = buildAutorDimension(keywords, limit)
         }
 
         if (type === LARIAT?.dimensions?.hashtags){
