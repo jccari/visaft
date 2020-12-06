@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
+import {List, Paper}from '@material-ui/core';
 import Tweet from "./tweet"
 
 const useStyles = makeStyles((theme) => ({
@@ -16,13 +16,14 @@ const data = [
   {author: "Sandra Adams", tweet: " — Do you have Paris recommendations? Have you ever…"},
 ]
 
-function TweetsList() {
-  const classes = useStyles();
+function TweetsList({data}) {
+  const classes = useStyles()
 
   if(!data)
     return "Cargando tweets..."
 
   return (
+    <Paper style={{maxHeight: '75%', overflow: 'auto'}}>
     <List className={classes.root}>
       {
         data.map( (item, i) => (
@@ -33,6 +34,7 @@ function TweetsList() {
         ))
       }
     </List>
+    </Paper>
   );
 }
 

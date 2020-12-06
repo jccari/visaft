@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Tweet({item}){
     const classes = useStyles();
-    const {author, tweet} = item
+    const {name, tweet, date} = item
 
     return (
         <>
@@ -23,19 +23,19 @@ function Tweet({item}){
                 <Avatar alt="Remy Sharp" src="/static/images/avatar.jpg" />
                 </ListItemAvatar>
                 <ListItemText
-                primary="Brunch this weekend?"
+                primary={name}
                 secondary={
-                    <>
-                    <Typography
-                        component="span"
-                        variant="body2"
-                        className={classes.inline}
-                        color="textPrimary"
-                    >
-                        {author}
-                    </Typography>
-                    {tweet}
-                    </>
+                    <div>
+                        <Typography
+                            component="span"
+                            variant="body2"
+                            className={classes.inline}
+                            color="textPrimary"
+                        >
+                            {tweet}
+                        </Typography>
+                        <p>{date}</p>
+                    </div>
                 }
                 />
             </ListItem>

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react"
-import { map } from "lodash";
+import { map, set } from "lodash";
 import { LARIAT } from "constants/index";
 export const AppContext = createContext(null)
 
@@ -7,6 +7,8 @@ function AppContextProvider(props){
     const serverUrl = "http://localhost:3000"
 
     const [tweets, setTweets] = useState(null)
+    const [actualPage, setActualPage] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
     const [keywords, setKeywords] = useState(null)
     const [dimensionSelected, setDimensionSelected] = useState(LARIAT.dimensions.hashtags)
 
@@ -25,15 +27,30 @@ function AppContextProvider(props){
         getDataForDrawing(keywordsFilter)
     },[dimensionSelected])
 
-    async function getTweets(kw){
-        let fetchUrl = `${serverUrl}/api/retrieve-tweets?limit=${1000}`
-        if (kw){
-            fetchUrl = fetchUrl + `&keywords=${kw}`
+    useEffect(()=>{
+        getTweets()
+    },[])
+
+    async function getTweets(kw='', page=0){
+        let query = "http://localhost:3000/api/get-tweets"
+        let request = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                page: page,
+                keywords: kw,
+            })
         }
-        const res = await fetch(fetchUrl)
-        const data = await res.json()
-        // setTweets(data)
-        setKeywords(data?.keywords)
+        // console.log("request", request)
+        const res = await fetch(query, request)
+        const response = await res.json()
+        
+        setTotalPages(response.pages)
+        setActualPage(page)
+        setTweets(response.data)
     }
 
     async function getKeywords(kw){
@@ -77,14 +94,14 @@ function AppContextProvider(props){
                 keywords: kw,
             })
         }
-        console.log("request", request)
+        // console.log("request", request)
         const res = await fetch(query, request)
         const response = await res.json()
-        console.log("data from server, ", response)
+        // console.log("data from server, ", response)
 
         setDatavis(response.data)
         let datavisConfig = computeDataVisualization(response.data)
-        console.log("datavisConfig", datavisConfig)
+        // console.log("datavisConfig", datavisConfig)
     }
 
 
@@ -96,6 +113,8 @@ function AppContextProvider(props){
         datavis, setDatavis,
         domain, setDomain,
         subgroups, setSubgroups,
+        totalPages, setTotalPages,
+        actualPage, setActualPage,
 
         getTweets,
         getKeywords,

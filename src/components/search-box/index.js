@@ -14,6 +14,7 @@ function SearchBox(params) {
         setKeywordsFilter(value)
         getKeywords(value)
         getDataForDrawing(value)
+        getTweets(value, 0)
     }
 
     return (

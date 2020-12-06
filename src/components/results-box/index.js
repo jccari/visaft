@@ -9,7 +9,7 @@ import {TweetsList} from "components"
 
 function ResultBox() {
   const [active, setActive] = useState(0)
-  const {keywords, getKeywords} = useContext(AppContext)
+  const {keywords, getKeywords, tweets} = useContext(AppContext)
 
 //   useEffect(()=>{
 //     // getKeywords()
@@ -36,7 +36,7 @@ function ResultBox() {
       </TabPanel>
 
       <TabPanel value={active} index={1}>
-          <TweetsList />
+          <TweetsList data={tweets}/>
       </TabPanel>
     </Paper>
   );
