@@ -5,6 +5,8 @@ import { AppContext } from "contexts/AppContext"
 import TabPanel from "./tab-panel"
 import KeywordsList from "./keywords-list";
 import {TweetsList} from "components"
+import KeywordsPagination from "./keywords-pagination";
+import TweetsPagination from "../tweets/tweets-pagination";
 
 
 function ResultBox() {
@@ -21,24 +23,28 @@ function ResultBox() {
   };
 
   return (
-    <Paper square className="mt-3">
-      <Tabs
-        value={active}
-        indicatorColor="primary"
-        textColor="primary"
-        onChange={handleChange}
-      >
-        <Tab label="Palabras Clave" />
-        <Tab label="Resultado de Búsqueda" />
-      </Tabs>
-      <TabPanel value={active} index={0}>
-          <KeywordsList data={keywords}/>
-      </TabPanel>
+    <div>
+      <Paper square className="mt-3">
+        <Tabs
+          value={active}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={handleChange}
+        >
+          <Tab label="Palabras Clave" />
+          <Tab label="Resultado de Búsqueda" />
+        </Tabs>
+        <TabPanel value={active} index={0} style={{height: "45em"}}>
+            {/* <KeywordsList data={keywords}/> */}
+            <KeywordsPagination data={keywords}/>
+        </TabPanel>
 
-      <TabPanel value={active} index={1}>
-          <TweetsList data={tweets}/>
-      </TabPanel>
-    </Paper>
+        <TabPanel value={active} index={1} style={{height: "45em"}}>
+            <TweetsPagination />
+            {/* <TweetsList data={tweets}/> */}
+        </TabPanel>
+      </Paper>
+    </div>
   );
 }
 

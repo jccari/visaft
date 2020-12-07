@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.1",
+    "@material-ui/data-grid": "^4.0.0-alpha.11",
+    "@material-ui/icons": "^4.11.2",
     "better-sqlite3": "^7.1.1",
     "bootstrap": "^4.5.3",
     "d3": "^6.2.0",

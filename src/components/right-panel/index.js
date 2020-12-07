@@ -4,33 +4,7 @@ import { FormControl, InputLabel, NativeSelect, Select, MenuItem, makeStyles } f
 import BootstrapInput from "./input"
 import { LARIAT } from "constants/index";
 import { AppContext } from "contexts/AppContext";
-
-let dataset = [
-    {
-        "Nitrogen": "12",
-        "group": "banana",
-        "normal": "1",
-        "stress": "13",
-    },
-    {
-        "Nitrogen": "6",
-        "group": "poacee",
-        "normal": "6",
-        "stress": "33",
-    },
-    {
-        "Nitrogen": "11",
-        "group": "sorgho",
-        "normal": "28",
-        "stress": "12"
-    },
-    {    
-        "Nitrogen": "19",
-        "group": "triticum",
-        "normal": "6",
-        "stress": "1",
-    }
-]
+import Test from "./table-pagination";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
@@ -71,10 +45,10 @@ function RightPanel(props){
                     </Select>
                 </FormControl>
             </div>
-            {/* <BarChart data={datatest}/> */}
             {dimensionSelected === LARIAT.dimensions.hashtags && <BarChartGroup data={datavis} domain={domain} subgroups={subgroups}/>}
             {dimensionSelected === LARIAT.dimensions.autor && <BarChartAuthor data={datavis} domain={domain} subgroups={subgroups}/>}
-            {/* {dimensionSelected === LARIAT.dimensions.hashtags && <BarChartGroup data={dataset} />} */}
+            {/* {dimensionSelected === LARIAT.dimensions.hashtags && <BarChartGroup data={dataset} />}
+            {/* <BarChart data={datatest}/> */}
         </div>
     )
 }

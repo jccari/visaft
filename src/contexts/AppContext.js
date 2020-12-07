@@ -7,6 +7,7 @@ function AppContextProvider(props){
     const serverUrl = "http://localhost:3000"
 
     const [tweets, setTweets] = useState(null)
+    const [totalTweets, setTotalTweets] = useState(0)
     const [actualPage, setActualPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [keywords, setKeywords] = useState(null)
@@ -42,6 +43,7 @@ function AppContextProvider(props){
             body: JSON.stringify({
                 page: page,
                 keywords: kw,
+                limit: 100,
             })
         }
         // console.log("request", request)
@@ -51,10 +53,11 @@ function AppContextProvider(props){
         setTotalPages(response.pages)
         setActualPage(page)
         setTweets(response.data)
+        setTotalTweets(response.total)
     }
 
     async function getKeywords(kw){
-        let fetchUrl = `${serverUrl}/api/get-keywords?limit=${10}`
+        let fetchUrl = `${serverUrl}/api/get-keywords?limit=${25}`
         if (kw){
             fetchUrl = fetchUrl + `&keywords=${kw}`
         }
@@ -113,6 +116,7 @@ function AppContextProvider(props){
         datavis, setDatavis,
         domain, setDomain,
         subgroups, setSubgroups,
+        totalTweets, setTotalTweets,
         totalPages, setTotalPages,
         actualPage, setActualPage,
 

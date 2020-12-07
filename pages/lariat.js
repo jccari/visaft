@@ -19,12 +19,12 @@ function Home({data}) {
   },[])
 
   return (
-    <div>
+    <div className="container-fluid h-100" style={{height: '100%'}}>
       <Head>
         <title>Lariat</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <div className="row">
+      <div className="row">
           <LeftPanel/>
           <RightPanel/>
       </div>

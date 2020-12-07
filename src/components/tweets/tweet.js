@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     inline: {
       display: 'inline',
     },
+    listItem:{
+        maxWidth: 350,
+        minWidth: 300,
+    }
   }));
 
 function Tweet({item}){
@@ -17,7 +21,7 @@ function Tweet({item}){
     const {name, tweet, date} = item
 
     return (
-        <>
+        <div className={classes.listItem}>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar.jpg" />
@@ -40,7 +44,7 @@ function Tweet({item}){
                 />
             </ListItem>
             <Divider variant="inset" component="li" />
-        </>
+        </div>
     )
 }
 
