@@ -8,9 +8,9 @@ import { axisLeft, axisBottom } from 'd3-axis'
 // https://www.d3-graph-gallery.com/graph/barplot_grouped_basicWide.html
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 20, left: 50},
+var margin = {top: 10, right: 30, bottom: 75, left: 50},
     width = 1000 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+    height = 500 - margin.top - margin.bottom;
 
 const BarChartAuthor = ({ data, domain, subgroups }) => {
     const d3svg = useRef(null)
@@ -42,17 +42,25 @@ const BarChartAuthor = ({ data, domain, subgroups }) => {
 
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             var groups =  domain//map(data, function(d){return(d.group)})
-            console.log("groups", groups)
-            console.log("groups", subgroups)
+            // console.log("groups", groups)
+            // console.log("groups", subgroups)
 
             // Add X axis
             var x = scaleBand()
                 .domain(groups)
                 .range([0, width])
                 .padding([0.2])
+            // svg.append("g")
+            //     .attr("transform", "translate(0," + height + ")")
+            //     .call(axisBottom(x).tickSize(0));
+
             svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .call(axisBottom(x).tickSize(0));
+            .attr("transform", "translate(0," + height + ")")
+            .call(axisBottom(x))
+            .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-45)")
+                .style("text-anchor", "end");
+              
 
             let yMax = max(data, item => item.total)
             // Add Y axis
@@ -82,7 +90,7 @@ const BarChartAuthor = ({ data, domain, subgroups }) => {
                 .enter()
                 .append("g")
                     .attr("transform", function(d) { 
-                        console.log("x", d["screen_name"], x(d["screen_name"]));
+                        // console.log("x", d["screen_name"], x(d["screen_name"]));
                         return "translate(" + x(d["screen_name"]) + ",0)"; })
                 .selectAll("rect")
                 .data(function(d) { return subgroups.map(function(key) { 
