@@ -90,6 +90,21 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                 .range(['#e41a1c','#377eb8','#4daf4a','#8000ff','#00ff00'])
                 // .range(['#e41a1c','#377eb8','#4daf4a','#8000ff','#00ff00'])
 
+            // What happens when user hover a bar
+            var mouseover = function(d) {
+                // what subgroup are we hovering?
+                var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
+                console.log("mouseover", subgroupName)
+                console.log("d", d)
+                // var subgroupValue = d.data[subgroupName];
+                // // Reduce opacity of all rect to 0.2
+                // d3.selectAll(".myRect").style("opacity", 0.2)
+                // // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
+                // d3.selectAll("."+subgroupName)
+                // .style("opacity", 1)
+            }
+
+
             // Show the bars
             svg.append("g")
                 .selectAll("g")
@@ -105,12 +120,13 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                     // console.log("key", key, d.total)
                     return {key: d.hashtag, value: d.total}; }); })
                 .enter().append("rect")
-                    // attr("class", function(d){ return d.key }) // Add a class to each subgroup: their name
+                    .attr("id", function(d){ return d.key }) // Add a class to each subgroup: their name
                     .attr("x", function(d) { return xSubgroup(d.key); })
                     .attr("y", function(d) { return y(d.value); })
                     .attr("width", xSubgroup.bandwidth())
                     .attr("height", function(d) { return height - y(d.value); })
                     .attr("fill", function(d) { return color(d.key); })
+                .on("mouseover", mouseover)
             
         }
     }, [data, domain, subgroups])
