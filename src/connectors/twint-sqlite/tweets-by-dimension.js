@@ -7,17 +7,20 @@ function TweetsByDimension(source, keywords="", dimension=LARIAT.dimensions.hash
     let countQuery = 'SELECT count(id) as total FROM tweets'
 
     if (keywords.length > 0){
-        query = addKeywordsFilter(query, keywords)
-        countQuery = addKeywordsFilter(countQuery, keywords)
+        query = addKeywordsFilter(query, keywords) + " AND "
+        countQuery = addKeywordsFilter(countQuery, keywords) + " AND "
+    } else {
+        query = query + " WHERE "
+        countQuery = countQuery + " WHERE "
     }
 
     if (dimension === LARIAT.dimensions.hashtags){
-        query = query + ` AND hashtags LIKE \'%${value}%\'`
-        countQuery = countQuery + ` AND hashtags LIKE \'%${value}%\'`
+        query = query + ` hashtags LIKE \'%${value}%\'`
+        countQuery = countQuery + ` hashtags LIKE \'%${value}%\'`
     }
     if (dimension === LARIAT.dimensions.autor){
-        query = query + ` AND name LIKE \'%${value}%\'`
-        countQuery = countQuery + ` AND name LIKE \'%${value}%\'`
+        query = query + ` name LIKE \'%${value}%\'`
+        countQuery = countQuery + ` name LIKE \'%${value}%\'`
     }    
     // if (dimension === LARIAT.dimensions.time)
 

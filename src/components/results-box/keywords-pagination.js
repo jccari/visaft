@@ -42,8 +42,8 @@ export default function KeywordsPagination({data}) {
           {(rowsPerPage > 0
             ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : data
-          ).map((row) => (
-            <TableRow key={row.name}>
+          ).map((row, index) => (
+            <TableRow key={index}>
               <TableCell component="th" scope="row">
                 {row.term}
               </TableCell>

@@ -13,6 +13,9 @@ function AppContextProvider(props){
     const [keywords, setKeywords] = useState(null)
     const [dimensionSelected, setDimensionSelected] = useState(LARIAT.dimensions.hashtags)
 
+    const [visTweets, setVisTweets] = useState(null)
+    const [totalVisTweets, setTotalVisTweets] = useState(0)
+
     const [keywordsFilter, setKeywordsFilter] = useState(null)
 
     //D3js variables
@@ -54,6 +57,30 @@ function AppContextProvider(props){
         setActualPage(page)
         setTweets(response.data)
         setTotalTweets(response.total)
+    }
+
+    async function getTweetsbyDimension(kw='', dimension, value, page=0){
+        let query = "http://localhost:3000/api/tweets-by-dimension"
+        let request = {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                page: page,
+                keywords: kw,
+                dimension: dimension,
+                value: value,
+            })
+        }
+        // console.log("request", request)
+        const res = await fetch(query, request)
+        const response = await res.json()
+        console.log("response", response)
+
+        setVisTweets(response.data)
+        setTotalVisTweets(response.total)
     }
 
     async function getKeywords(kw){
@@ -119,10 +146,13 @@ function AppContextProvider(props){
         totalTweets, setTotalTweets,
         totalPages, setTotalPages,
         actualPage, setActualPage,
+        visTweets, setVisTweets,
+        totalVisTweets, setTotalVisTweets,
 
         getTweets,
         getKeywords,
         getDataForDrawing,
+        getTweetsbyDimension,
     }
 
     return (

@@ -17,13 +17,28 @@ var margin = {top: 10, right: 30, bottom: 120, left: 50},
 
 const BarChartGroup = ({ data, domain, subgroups }) => {
     const d3svg = useRef(null)
-    //const {domain, subgroups} = useContext(AppContext)
+    const {getTweetsbyDimension, keywordsFilter, dimensionSelected} = useContext(AppContext)
 
     function clearNode(){
         let chart = document.getElementById("bar-chart-group");
         // console.log("clearNode", chart)
         if (chart)
             chart?.querySelectorAll('*').forEach(n => n.remove());
+    }
+
+    // What happens when user hover a bar
+    var mouseover = function(d) {
+        // what subgroup are we hovering?
+        var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
+        console.log("mouseover", subgroupName)
+        getTweetsbyDimension(keywordsFilter?keywordsFilter: '', dimensionSelected, subgroupName.hashtag, 0)
+        // console.log("d", d)
+        // var subgroupValue = d.data[subgroupName];
+        // // Reduce opacity of all rect to 0.2
+        // d3.selectAll(".myRect").style("opacity", 0.2)
+        // // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
+        // d3.selectAll("."+subgroupName)
+        // .style("opacity", 1)
     }
 
     useEffect(() => {
@@ -44,11 +59,6 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                 .attr("transform",
                         "translate(" + margin.left + "," + margin.top + ")");
 
-            // console.log("datafromcsv", data)
-            // List of subgroups = header of the csv files = soil condition here
-            // var subgroups = data.columns.slice(1)
-            // var subgroups = ["Nitrogen", "normal", "stress"]
-            // var subgroups = ["normal", "stress"]
 
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             var groups =  domain//map(data, function(d){return(d.group)})
@@ -60,9 +70,7 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                 .domain(groups)
                 .range([0, width])
                 .padding([0.2])
-            // svg.append("g")
-            //     .attr("transform", "translate(0," + height + ")")
-            //     .call(axisBottom(x).tickSize(0));
+      
             svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(axisBottom(x))
@@ -89,21 +97,6 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                 .domain(subgroups)
                 .range(['#e41a1c','#377eb8','#4daf4a','#8000ff','#00ff00'])
                 // .range(['#e41a1c','#377eb8','#4daf4a','#8000ff','#00ff00'])
-
-            // What happens when user hover a bar
-            var mouseover = function(d) {
-                // what subgroup are we hovering?
-                var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
-                console.log("mouseover", subgroupName)
-                console.log("d", d)
-                // var subgroupValue = d.data[subgroupName];
-                // // Reduce opacity of all rect to 0.2
-                // d3.selectAll(".myRect").style("opacity", 0.2)
-                // // Highlight all rects of this subgroup with opacity 0.8. It is possible to select them since they have a specific class = their name.
-                // d3.selectAll("."+subgroupName)
-                // .style("opacity", 1)
-            }
-
 
             // Show the bars
             svg.append("g")
