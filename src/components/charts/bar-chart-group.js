@@ -12,7 +12,7 @@ import { AppContext } from "contexts/AppContext";
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 120, left: 50},
-    width = 1000 - margin.left - margin.right,
+    width = 950 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
 
 const BarChartGroup = ({ data, domain, subgroups }) => {
@@ -27,11 +27,11 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
     }
 
     // What happens when user hover a bar
-    var mouseover = function(d) {
+    var mouseover = async function(d) {
         // what subgroup are we hovering?
         var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
         console.log("mouseover", subgroupName)
-        getTweetsbyDimension(keywordsFilter?keywordsFilter: '', dimensionSelected, subgroupName.hashtag, 0)
+        await getTweetsbyDimension(keywordsFilter?keywordsFilter: '', dimensionSelected, subgroupName.hashtag, 0)
         // console.log("d", d)
         // var subgroupValue = d.data[subgroupName];
         // // Reduce opacity of all rect to 0.2

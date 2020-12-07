@@ -79,7 +79,7 @@ function AppContextProvider(props){
         const response = await res.json()
         console.log("response", response)
 
-        setVisTweets(response.data)
+        await setVisTweets(response.data)
         setTotalVisTweets(response.total)
     }
 

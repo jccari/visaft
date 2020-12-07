@@ -11,14 +11,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'inline',
     },
     listItem:{
-        maxWidth: 350,
+        width: '100%',
         minWidth: 300,
     }
   }));
 
 function Tweet({item}){
     const classes = useStyles();
-    const {name, tweet, date} = item
+    const {name, screen_name, tweet, date} = item
 
     return (
         <div className={classes.listItem}>
@@ -30,15 +30,16 @@ function Tweet({item}){
                 primary={name}
                 secondary={
                     <div>
+                        <p className="m-0">{`@${screen_name}`}</p>
                         <Typography
                             component="span"
                             variant="body2"
                             className={classes.inline}
                             color="textPrimary"
                         >
-                            {tweet}
+                            {String(tweet).substr(0,90)}
                         </Typography>
-                        <p>{date}</p>
+                        <p className="m-0">{date}</p>
                     </div>
                 }
                 />

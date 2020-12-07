@@ -9,7 +9,7 @@ import { axisLeft, axisBottom } from 'd3-axis'
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 75, left: 50},
-    width = 1000 - margin.left - margin.right,
+    width = 950 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 const BarChartAuthor = ({ data, domain, subgroups }) => {
