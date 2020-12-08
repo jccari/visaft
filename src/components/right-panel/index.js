@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   
 function RightPanel(props){
     const classes = useStyles()
-    const {dimensionSelected, setDimensionSelected, datavis, domain, subgroups} = useContext(AppContext)
+    const {dimensionSelected, setDimensionSelected, datavis, domain, subgroups, keywordsFilter} = useContext(AppContext)
 
     // useEffect(()=>{
     //     getDataForDrawing()

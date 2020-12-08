@@ -11,21 +11,13 @@ const margin = { top: 100, right: 80, bottom: 100, left: 80 }
 const width = 900 - margin.left - margin.right
 const height = 600 - margin.top
 
-const data = [
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-14"), value: 8140.71 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-15"), value: 8338.42 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-16"), value: 8371.15 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-17"), value: 8285.96 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-18"), value: 8197.8 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-19"), value: 8298.69 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-20"), value: 8880.23 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-21"), value: 8997.57 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-22"), value: 9001.64 },
-    { date: d3.timeParse("%Y-%m-%d")("2018-04-23"), value: 8958.55 }
-]
 
-const ScatterPlot = () => {
+const ScatterPlot = ({data}) => {
     const d3svg = useRef(null)
+
+    function formatDate(data){
+        data?.forEach((item) => item.date = d3.timeParse("%Y-%m-%d")(item.lastDate))
+    }
 
     function clearNode() {
         let chart = document.getElementById("bar-chart-group");
@@ -33,6 +25,8 @@ const ScatterPlot = () => {
     }
 
     useEffect(() => {
+        formatDate(data)
+        console.log("data", data);
         clearNode()
         if (data && d3svg.current) {
             let svg = select(d3svg.current)
@@ -54,10 +48,10 @@ const ScatterPlot = () => {
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x));
 
-            let yMax = d3.max(data, item => item.value )
+            let yMax = d3.max(data, item => item.total )
             // Add Y axis
             var y = d3.scaleLinear()
-                .domain([8000, yMax])
+                .domain([0, yMax])
                 .range([height, 0]);
             svg.append("g")
                 .call(d3.axisLeft(y));
@@ -70,7 +64,7 @@ const ScatterPlot = () => {
                 .attr("stroke-width", 1.5)
                 .attr("d", d3.line()
                     .x(function (d) { return x(d.date) })
-                    .y(function (d) { return y(d.value) })
+                    .y(function (d) { return y(d.total) })
                 )
 
             // Add the points
@@ -81,8 +75,8 @@ const ScatterPlot = () => {
                 .enter()
                 .append("circle")
                 .attr("cx", function (d) { return x(d.date) })
-                .attr("cy", function (d) { return y(d.value) })
-                .attr("r", 5)
+                .attr("cy", function (d) { return y(d.total) })
+                .attr("r", 7)
                 .attr("fill", "#69b3a2")
         }
     }, [data])

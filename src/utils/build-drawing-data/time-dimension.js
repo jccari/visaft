@@ -37,7 +37,7 @@ function buildTimeDimension(firstDate, lastDate, keywords=null ,step = 15 /* day
             lastDate: dates [i+1],
             total: resQuery?.total
         }
-        console.log("queryRes", i , res );
+        // console.log("queryRes", i , res );
         results.push(res)
     }
     // console.log("results: ", results);

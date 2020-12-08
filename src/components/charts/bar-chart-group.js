@@ -119,7 +119,7 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                     .attr("width", xSubgroup.bandwidth())
                     .attr("height", function(d) { return height - y(d.value); })
                     .attr("fill", function(d) { return color(d.key); })
-                .on("mouseover", mouseover)
+                .on("click", mouseover)
             
         }
     }, [data, domain, subgroups])

@@ -26,12 +26,14 @@ const useStyles2 = makeStyles({
 
 export default function VisTweetsPagination() {
   const classes = useStyles2();
-  const {visTweets, totalVisTweets} = useContext(AppContext)
+  const {visTweets, totalVisTweets, dimensionSelected, keywordsFilter} = useContext(AppContext)
   // console.log("visTweets", visTweets)
   // const [rows, setRows] = useState(cloneDeep(visTweets))
   // const [rows, setRows] = useState(null)
   let rows = cloneDeep(visTweets)
   // console.log("rows", rows)
+  let dim = dimensionSelected
+  let keyFilter = keywordsFilter
 
   // console.log("equal", isEqual(visTweets, rows))
   // console.log("equal", JSON.stringify(visTweets)==JSON.stringify(rows))
@@ -54,7 +56,10 @@ export default function VisTweetsPagination() {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <div>
+      {/* <p className="font-weight-bold mt-0 mb-0">DIMENSION: {dim}</p> */}
+      {/* <p className="font-weight-bold">INCLUYE: {keyFilter}</p> */}
+      <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
           {((rows && rowsPerPage > 0)
@@ -94,5 +99,6 @@ export default function VisTweetsPagination() {
         </TableFooter>
       </Table>
     </TableContainer>
+    </div>
   );
 }

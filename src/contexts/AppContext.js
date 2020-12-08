@@ -11,7 +11,7 @@ function AppContextProvider(props){
     const [actualPage, setActualPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [keywords, setKeywords] = useState(null)
-    const [dimensionSelected, setDimensionSelected] = useState(LARIAT.dimensions.hashtags)
+    const [dimensionSelected, setDimensionSelected] = useState(LARIAT.dimensions.time)
 
     const [visTweets, setVisTweets] = useState(null)
     const [totalVisTweets, setTotalVisTweets] = useState(0)
