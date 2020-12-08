@@ -8,18 +8,28 @@ import VisTweetsPagination from "./vis-tweets-pagination";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
-      margin: theme.spacing(3),
+    //   margin: theme.spacing(1),
       width: '25%',
     },
+    dimensionContainer: {
+        height: '50px',
+        minWidth: '100px',
+        paddingTop: 2,
+        paddingBottom: 2,
+    },
+    formContainer: {
+        height: '50px',
+        minWidth: 150,
+    },
+    elements: {
+        width: "200px",
+        minWidth: "150px"
+    }
 }));
   
 function RightPanel(props){
     const classes = useStyles()
     const {dimensionSelected, setDimensionSelected, datavis, domain, subgroups, keywordsFilter} = useContext(AppContext)
-
-    // useEffect(()=>{
-    //     getDataForDrawing()
-    // },[dimensionSelected, datavis])
 
     function onChangeDimension(e){
         setDimensionSelected(e.target.value)
@@ -31,15 +41,17 @@ function RightPanel(props){
             <div className="row mh-100">
                 <div className="col-8 mh-100">
                     <h3 className="text-center">Visualización de Tweets en grupos seleccionados</h3>
-                    <div>
-                        <FormControl className={classes.margin}>
-                            <InputLabel id="label-dimension">Selecciona una dimensión</InputLabel>
+                    <div className={classes.dimensionContainer}>
+                        <FormControl className={classes.formContainer}>
+                            <InputLabel id="label-dimension" className={classes.elements} >Selecciona una dimensión</InputLabel>
                             <Select 
                                 labelId="label-dimension" 
                                 id="select" 
                                 value={dimensionSelected} 
                                 input={<BootstrapInput />}
                                 onChange={e => onChangeDimension(e)}
+                                className={classes.elements}
+                                autoWidth
                             >
                                 <MenuItem value={LARIAT.dimensions.time}>Tiempo</MenuItem>
                                 <MenuItem value={LARIAT.dimensions.autor}>Autor</MenuItem>
