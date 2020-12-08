@@ -1,7 +1,7 @@
 import _ from "lodash"
 import sw from "stopword"
 
-const stopwords_es = ["a","de","los","mi","que","yo","en","era","ni","se","da","es","os","son","ha"]
+const stopwords_es = ["a","de","los","mi","que","yo","en","era","ni","se","da","es","os","son","ha","esta","este"]
 
 function cleanTweets(data){
     // Cleaning data
