@@ -1,16 +1,12 @@
 // Inspiration
-//https://www.d3-graph-gallery.com/graph/connectedscatter_multi.html
-
-//https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
+// https://www.d3-graph-gallery.com/graph/connectedscatter_multi.html
+// https://www.d3-graph-gallery.com/graph/connectedscatter_legend.html
 
 import React, { useEffect, useRef } from 'react'
 import { select } from 'd3-selection'
 import * as d3 from "d3"
 
-// https://stackoverflow.com/questions/47047798/how-to-change-horizontal-bar-chart-to-vertical-bar-chart-in-d3-v4
-
 // margin convention often used with D3
-// const margin = { top: 80, right: 60, bottom: 80, left: 60 }
 const margin = { top: 100, right: 80, bottom: 100, left: 80 }
 const width = 900 - margin.left - margin.right
 const height = 600 - margin.top
@@ -58,9 +54,10 @@ const ScatterPlot = () => {
                 .attr("transform", "translate(0," + height + ")")
                 .call(d3.axisBottom(x));
 
+            let yMax = d3.max(data, item => item.value )
             // Add Y axis
             var y = d3.scaleLinear()
-                .domain([8000, 9200])
+                .domain([8000, yMax])
                 .range([height, 0]);
             svg.append("g")
                 .call(d3.axisLeft(y));
@@ -103,5 +100,3 @@ const ScatterPlot = () => {
 }
 
 export default ScatterPlot
-
-// style={{ pointerEvents: 'all', width: '100%', height: '100%' }}

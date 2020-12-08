@@ -127,7 +127,7 @@ function AppContextProvider(props){
         // console.log("request", request)
         const res = await fetch(query, request)
         const response = await res.json()
-        // console.log("data from server, ", response)
+        console.log("data from server, ", response)
 
         setDatavis(response.data)
         let datavisConfig = computeDataVisualization(response.data)
