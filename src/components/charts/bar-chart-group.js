@@ -4,7 +4,6 @@ import { max } from 'd3-array'
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale'
 import { axisLeft, axisBottom } from 'd3-axis'
 import * as d3 from "d3"
-import { map } from "lodash";
 import { AppContext } from "contexts/AppContext";
 
 // Inspiration from

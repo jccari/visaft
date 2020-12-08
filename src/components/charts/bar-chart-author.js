@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import { select } from 'd3-selection'
 import { max } from 'd3-array'
 import { scaleLinear, scaleBand, scaleOrdinal } from 'd3-scale'
 import { axisLeft, axisBottom } from 'd3-axis'
+import * as d3 from "d3"
+
+import { AppContext } from "contexts/AppContext";
 
 // Inspiration from
 // https://www.d3-graph-gallery.com/graph/barplot_grouped_basicWide.html
@@ -14,12 +17,19 @@ var margin = {top: 10, right: 30, bottom: 75, left: 50},
 
 const BarChartAuthor = ({ data, domain, subgroups }) => {
     const d3svg = useRef(null)
+    const {getTweetsbyDimension, keywordsFilter, dimensionSelected} = useContext(AppContext)
+
+
+    async function mouseClick(e){
+        // what subgroup are we hovering?
+        var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
+        // console.log("mouseclick", subgroupName)
+        await getTweetsbyDimension(keywordsFilter? keywordsFilter : '', dimensionSelected, subgroupName.name, 0)
+    }
 
     function clearNode(){
         let chart = document.getElementById("bar-chart-group");
-        // console.log("clearNode", chart)
-        if (chart)
-            chart?.querySelectorAll('*').forEach(n => n.remove());
+        chart?.querySelectorAll('*').forEach(n => n.remove());
     }
 
     useEffect(() => {
@@ -97,11 +107,13 @@ const BarChartAuthor = ({ data, domain, subgroups }) => {
                     // console.log("key", key, d.total)
                     return {key: d["screen_name"], value: d.total}; }); })
                 .enter().append("rect")
+                    .attr("id", function(d){ return d.key }) // Add a class to each subgroup: their name
                     .attr("x", function(d) { return xSubgroup(d.key); })
                     .attr("y", function(d) { return y(d.value); })
                     .attr("width", xSubgroup.bandwidth())
                     .attr("height", function(d) { return height - y(d.value); })
-                    .attr("fill", function(d) { return color(d.key); });
+                    .attr("fill", function(d) { return color(d.key); })
+                .on("click", mouseClick)
         }
     }, [data, domain, subgroups])
 
