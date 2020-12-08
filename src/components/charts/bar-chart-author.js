@@ -23,7 +23,8 @@ const BarChartAuthor = ({ data, domain, subgroups }) => {
     async function mouseClick(e){
         // what subgroup are we hovering?
         var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
-        // console.log("mouseclick", subgroupName)
+        console.log("parent ", d3.select(this.parentNode))
+        console.log("mouseclick", subgroupName)
         await getTweetsbyDimension(keywordsFilter? keywordsFilter : '', dimensionSelected, subgroupName.name, 0)
     }
 

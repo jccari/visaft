@@ -22,7 +22,10 @@ function TweetsByDimension(source, keywords="", dimension=LARIAT.dimensions.hash
         query = query + ` name LIKE \'%${value}%\'`
         countQuery = countQuery + ` name LIKE \'%${value}%\'`
     }    
-    // if (dimension === LARIAT.dimensions.time)
+    if (dimension === LARIAT.dimensions.time){
+        query = query + ` date >= \'${value?.firstDate}\' AND date <= \'${value?.lastDate}\'`
+        countQuery = countQuery + ` date >= \'${value?.firstDate}\' AND date <= \'${value?.lastDate}\'`
+    }
 
     query = query + " LIMIT " + String(limit)
     query = query + " OFFSET " + String(offset)
