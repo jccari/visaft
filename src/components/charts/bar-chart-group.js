@@ -30,7 +30,7 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
     var mouseover = async function(d) {
         // what subgroup are we hovering?
         var subgroupName = d3.select(this.parentNode).datum(); // This was the tricky part
-        console.log("mouseover", subgroupName)
+        // console.log("mouseover", subgroupName)
         await getTweetsbyDimension(keywordsFilter?keywordsFilter: '', dimensionSelected, subgroupName.hashtag, 0)
         // console.log("d", d)
         // var subgroupValue = d.data[subgroupName];
@@ -62,8 +62,8 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
 
             // List of groups = species here = value of the first column called group -> I show them on the X axis
             var groups =  domain//map(data, function(d){return(d.group)})
-            console.log("groups", groups)
-            console.log("groups", subgroups)
+            // console.log("groups", groups)
+            // console.log("groups", subgroups)
 
             // Add X axis
             var x = scaleBand()
@@ -106,7 +106,7 @@ const BarChartGroup = ({ data, domain, subgroups }) => {
                 .enter()
                 .append("g")
                     .attr("transform", function(d) { 
-                        console.log("x", d.hashtag, x(d.hashtag));
+                        // console.log("x", d.hashtag, x(d.hashtag));
                         return "translate(" + x(d.hashtag) + ",0)"; })
                 .selectAll("rect")
                 .data(function(d) { return subgroups.map(function(key) { 
