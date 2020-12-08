@@ -1,7 +1,7 @@
 import _ from "lodash"
 import sw from "stopword"
 
-const stopwords_es = ["a","de","los","mi","que","yo","en","era","ni","se","da","es","os","son","ha","com"]
+const stopwords_es = ["a","de","los","mi","que","yo","en","era","ni","se","da","es","os","son","ha"]
 
 function cleanTweets(data){
     // Cleaning data
@@ -11,10 +11,14 @@ function cleanTweets(data){
         item.procesedTweet = tmp.join(" ")
 
         // Removing urls from tweets
-        item.procesedTweet = item.procesedTweet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
-
-        // console.log("r: ", item.procesedTweet);
+        // item.procesedTweet = item.procesedTweet.replace(/(?:https?|ftp):\/\/[\n\S]+/g, '')
+        item.procesedTweet = item.procesedTweet.replace(/https:\/\/[\n\S]+/g, '')
+        item.procesedTweet = item.procesedTweet.replace(/pic.twitter.com\//g,'');
+        // console.log("tweet: ", item.tweet);
+        // console.log("procesedTweet: ", item.procesedTweet);
+        // console.log("--------------------------");
     })
+    return data
 }
 
 export default cleanTweets
