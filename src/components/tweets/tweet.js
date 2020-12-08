@@ -12,8 +12,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'inline',
     },
     listItem:{
-        width: '100%',
-        minWidth: 300,
+        width: '30em',
+        // minWidth: 200,
+        maxWidth: '30em',
     },
     link:{
         color: "blue",
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Tweet({item}){
     const classes = useStyles();
-    const {name, screen_name, tweet, date} = item
+    const {name, screen_name, tweet, date, time} = item
     let short_tweet = String(tweet).substr(0,100)
 
     const [showMore, setShowMore] = useState(false)
@@ -33,14 +34,14 @@ function Tweet({item}){
 
     return (
         <div className={classes.listItem}>
-            <ListItem alignItems="flex-start">
+            <ListItem alignItems="d-flex flex-wrap flex-start">
                 <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar.jpg" />
                 </ListItemAvatar>
                 <ListItemText
                 primary={name}
                 secondary={
-                    <div>
+                    <div className="d-flex flex-wrap">
                         <p className="m-0">{`@${screen_name}`}</p>
                         <Typography
                             component="span"
@@ -57,7 +58,7 @@ function Tweet({item}){
                                     </div>
                             }
                         </Typography>
-                        <p className="m-0">{date}</p>
+                        <p className="m-0">{date} {time}</p>
                     </div>
                 }
                 />
