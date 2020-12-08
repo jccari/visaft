@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import {BarChart, BarChartAuthor, BarChartGroup} from "components"
-import { FormControl, InputLabel, NativeSelect, Select, MenuItem, makeStyles } from "@material-ui/core";
+import { useContext} from "react";
+import {BarChart, BarChartAuthor, BarChartGroup, ScatterPlotTime} from "components"
+import { FormControl, InputLabel,Select, MenuItem, makeStyles } from "@material-ui/core";
 import BootstrapInput from "./input"
 import { LARIAT } from "constants/index";
 import { AppContext } from "contexts/AppContext";
@@ -49,8 +49,8 @@ function RightPanel(props){
                     </div>
                     {dimensionSelected === LARIAT.dimensions.hashtags && <BarChartGroup data={datavis} domain={domain} subgroups={subgroups}/>}
                     {dimensionSelected === LARIAT.dimensions.autor && <BarChartAuthor data={datavis} domain={domain} subgroups={subgroups}/>}
-                    {/* {dimensionSelected === LARIAT.dimensions.hashtags && <BarChartGroup data={dataset} />}
-                    {/* <BarChart data={datatest}/> */}
+                    {dimensionSelected === LARIAT.dimensions.time && <ScatterPlotTime data={datavis} /> }
+                     {/* <BarChart data={datatest}/>  */}
                 </div>
                 <div className="col-4 mh-100">
                     <h5 className="text-center">Tweets</h5>
