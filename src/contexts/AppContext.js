@@ -72,6 +72,7 @@ function AppContextProvider(props){
                 keywords: kw,
                 dimension: dimension,
                 value: value,
+                limit: 50,
             })
         }
         // console.log("request", request)
