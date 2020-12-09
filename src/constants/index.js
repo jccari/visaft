@@ -11,5 +11,5 @@ export const LARIAT = {
     }
 }
 
-export const DB_SOURCE = "static/databases/Parlamentaries.db"
+export const DB_SOURCE = process.env.NODE_ENV== "development"? "public/Parlamentaries.db":"https://visaft.vercel.app/Parlamentaries.db"
 // export const DB_SOURCE = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"
