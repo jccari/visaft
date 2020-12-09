@@ -3,9 +3,14 @@ import { map, set } from "lodash";
 import { LARIAT } from "constants/index";
 export const AppContext = createContext(null)
 
+// import path from 'path'
+// import getConfig from 'next/config'
+
 function AppContextProvider(props){
     const port = process.env.PORT || 3000
-    const serverUrl = process.env.NODE_ENV== "development"? `http://localhost:${port}` : `https://visaft.vercel.app:${port}`
+    const serverUrl = process.env.NODE_ENV== "development"? `http://localhost:${port}` : `https://visaft.vercel.app`
+    // console.log("project root", getConfig().serverRuntimeConfig);
+    // console.log("BASE_PATH", path.join(getConfig().serverRuntimeConfig.PROJECT_ROOT, "test.db"))
 
     const [tweets, setTweets] = useState(null)
     const [totalTweets, setTotalTweets] = useState(0)
