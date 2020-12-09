@@ -20,16 +20,16 @@ function reduceToCorpus(data){
     return corpus
 }
 
-function computeGlobalFrequecy(data){
-    cleanTweets(data)
+function computeGlobalFrequecy(data, limit){
+    data = cleanTweets(data)
     let corpus = reduceToCorpus(data)
     // console.log("corpus", corpus)
     let tfidf = new natural.TfIdf()
-    
+
     tfidf.addDocument(corpus)
 
     // Retrive the most representative words
-    let terms = tfidf.listTerms(0 /*document index*/).slice(0,200)
+    let terms = tfidf.listTerms(0 /*document index*/).slice(0, limit)
     // console.log("terms: ", terms);
     return terms
 }

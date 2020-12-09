@@ -1,6 +1,16 @@
 import { useEffect } from "react";
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+// import LeftPanel from "components/left-panel";
+// import MiddlePanel from "components/charts/bar-chart";
+import {LeftPanel, RightPanel} from "components";
+
+let datatest = [
+  { genre: 'A', revenue: 5 },
+  { genre: 'B', revenue: 4 },
+  { genre: 'C', revenue: 9 },
+  { genre: 'D', revenue: 2 },
+  { genre: 'E', revenue: 7 },
+]
 
 function Home({data}) {
 
@@ -9,38 +19,34 @@ function Home({data}) {
   },[])
 
   return (
-    <div className={styles.container}>
+    <div className="container-fluid h-100" style={{height: '100%'}}>
       <Head>
         <title>Lariat</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-
-      </main>
-
-      <footer className={styles.footer}>
-        
-      </footer>
+      <div className="row">
+          <LeftPanel/>
+          <RightPanel/>
+      </div>
     </div>
   )
 }
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  // const res = await fetch('http://localhost:3000/api/connectors/twint-sqlite')
-  const res = await fetch(`http://localhost:3000/api/retrieve-tweets?limit=${1000}`)
-  const data = await res.json()
+// export async function getStaticProps() {
+//   // Call an external API endpoint to get posts.
+//   // You can use any data fetching library
+//   // const res = await fetch('http://localhost:3000/api/connectors/twint-sqlite')
+//   const res = await fetch(`http://localhost:3000/api/retrieve-tweets?limit=${1000}`)
+//   const data = await res.json()
 
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      data,
-    },
-  }
-}
+//   // By returning { props: posts }, the Blog component
+//   // will receive `posts` as a prop at build time
+//   return {
+//     props: {
+//       data,
+//     },
+//   }
+// }
 
 
 export default Home

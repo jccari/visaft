@@ -1,13 +1,10 @@
-const Database = require('better-sqlite3');
+export { default as retrieveTweets } from "./retrieve-tweets"
+export { default as retrieveTweetsPage } from "./retrieve-tweets-page"
+export { default as tweetsByDimension } from "./tweets-by-dimension"
 
-function retrieveTweets(source, limit){
-    let query = "SELECT id, tweet, date, time, timezone, user_id, screen_name, name, link, mentions, hashtags FROM tweets"
-    if (limit != undefined)
-        query = query + " LIMIT " + String(limit)
-
-    const db = new Database(source, { verbose: console.log });
-    const stmt = db.prepare(query);
-    return stmt.all()
-}
-
-export default retrieveTweets
+export { 
+    getLimitDates,
+    runGetQuery,
+    runAllQuery,
+    addKeywordsFilter,
+} from "./utils"

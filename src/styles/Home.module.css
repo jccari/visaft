@@ -1,10 +1,10 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .main {
@@ -15,6 +15,34 @@
   justify-content: center;
   align-items: center;
 }
+
+.leftpanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+  background-color: #0070f3;
+}
+
+.middlepanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+  background-color: aqua;
+}
+
+.rightpanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 20%;
+  background-color: burlywood;
+}
+
+
+
+
 
 .footer {
   width: 100%;

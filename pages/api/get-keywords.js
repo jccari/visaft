@@ -9,14 +9,13 @@ export default (req, res) => {
     const {limit, keywords} = req.query
     
     let retrievedTweets = retrieveTweets(DB_SOURCE, keywords, limit)
-    let listTerms = computeGlobalFrequecy(retrievedTweets)
+    let listTerms = computeGlobalFrequecy(retrievedTweets, limit)
     // console.log("tweets", retrievedTweets);
     // console.log("list", listTerms);
     res.statusCode = 200
     res.json({
-      count: retrievedTweets.length,
-      raw: retrievedTweets, 
-      keywords: listTerms
+      count: listTerms.length,
+      keywords: listTerms,
     })
   } catch (err){
     res.statusCode = 500
