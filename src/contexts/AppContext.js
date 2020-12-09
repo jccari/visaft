@@ -4,7 +4,8 @@ import { LARIAT } from "constants/index";
 export const AppContext = createContext(null)
 
 function AppContextProvider(props){
-    const serverUrl = process.env.NODE_ENV== "development"? "" : "https://visaft.vercel.app"
+    const port = process.env.NODE_ENV== "development"? 3000 : process.env.PORT
+    const serverUrl = process.env.NODE_ENV== "development"? `http://localhost:${port}` : `https://visaft.vercel.app:${port}`
 
     const [tweets, setTweets] = useState(null)
     const [totalTweets, setTotalTweets] = useState(0)
