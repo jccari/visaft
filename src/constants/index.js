@@ -11,4 +11,5 @@ export const LARIAT = {
     }
 }
 
-export const DB_SOURCE = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"
+export const DB_SOURCE = "static/databases/Parlamentaries.db"
+// export const DB_SOURCE = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"

@@ -1,18 +1,17 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import { retrieveTweetsPage } from "connectors/twint-sqlite";
+import { DB_SOURCE } from "constants/index";
 
 export default (req, res) => {
   try{
-    let source = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"
-    
     const {
         page,
         limit, 
         keywords
     } = req.body
     
-    let retrievedTweets = retrieveTweetsPage(source, keywords, page, limit)
+    let retrievedTweets = retrieveTweetsPage(DB_SOURCE, keywords, page, limit)
 
     res.statusCode = 200
     res.json({

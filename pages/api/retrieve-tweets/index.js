@@ -2,14 +2,13 @@
 
 import { retrieveTweets } from "connectors/twint-sqlite";
 import { computeGlobalFrequecy } from "pre-processing";
+import { DB_SOURCE } from "constants/index";
 
 export default (req, res) => {
   try{
-    let source = "/home/jccari/code/visaft/pages/api/Parlamentaries.db"
-    
     const {limit, keywords} = req.query
     
-    let retrievedTweets = retrieveTweets(source, keywords, limit)
+    let retrievedTweets = retrieveTweets(DB_SOURCE, keywords, limit)
     let listTerms = computeGlobalFrequecy(retrievedTweets)
     // console.log("tweets", retrievedTweets);
     // console.log("list", listTerms);
