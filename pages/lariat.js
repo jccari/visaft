@@ -1,22 +1,7 @@
-import { useEffect } from "react";
 import Head from 'next/head'
-// import LeftPanel from "components/left-panel";
-// import MiddlePanel from "components/charts/bar-chart";
 import {LeftPanel, RightPanel} from "components";
 
-let datatest = [
-  { genre: 'A', revenue: 5 },
-  { genre: 'B', revenue: 4 },
-  { genre: 'C', revenue: 9 },
-  { genre: 'D', revenue: 2 },
-  { genre: 'E', revenue: 7 },
-]
-
-function Home({data}) {
-
-  useEffect( () => {
-    console.log("Home:data", data);
-  },[])
+function Home() {
 
   return (
     <div className="container-fluid h-100" style={{height: '100%'}}>

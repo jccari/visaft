@@ -4,7 +4,7 @@ import { LARIAT } from "constants/index";
 export const AppContext = createContext(null)
 
 function AppContextProvider(props){
-    const serverUrl = "http://localhost:3000"
+    const serverUrl = process.env.NODE_ENV== "development"? "" : "https://visaft.vercel.app"
 
     const [tweets, setTweets] = useState(null)
     const [totalTweets, setTotalTweets] = useState(0)
@@ -36,7 +36,7 @@ function AppContextProvider(props){
     },[])
 
     async function getTweets(kw='', page=0){
-        let query = "http://localhost:3000/api/get-tweets"
+        let query = `${serverUrl}/api/get-tweets`
         let request = {
             method: 'POST',
             headers: {
@@ -60,7 +60,7 @@ function AppContextProvider(props){
     }
 
     async function getTweetsbyDimension(kw='', dimension, value, page=0){
-        let query = "http://localhost:3000/api/tweets-by-dimension"
+        let query = `${serverUrl}/api/tweets-by-dimension`
         let request = {
             method: 'POST',
             headers: {
@@ -113,7 +113,7 @@ function AppContextProvider(props){
     }
 
     async function getDataForDrawing(kw){
-        let query = "http://localhost:3000/api/compute-drawing-data"
+        let query = `${serverUrl}/api/compute-drawing-data`
         let request = {
             method: 'POST',
             headers: {
